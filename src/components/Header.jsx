@@ -16,8 +16,7 @@ function Header() {
 
         <ul className="nav nav-pills">
           <NavButton name="Home" />
-          <NavButton name="FAQs" />
-          <NavButton name="About" />
+          <NavButton name="About Us" />
         </ul>
       </header>
     </div>

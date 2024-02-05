@@ -11,10 +11,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route path="/about" component={About} />
-
-            Route for 404 Not Found
-            <Route component={NotFound} /> */}
+          {/* <Route path="/about" component={About} /> */}
         </Switch>
         <Footer />
       </div>
