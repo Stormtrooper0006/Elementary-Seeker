@@ -1,0 +1,6 @@
+.link-color {
+  color: #6f42c1;
+}
+a:hover {
+  color: #fff !important;
+}
