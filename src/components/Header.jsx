@@ -1,6 +1,6 @@
 import React from "react";
 import SchoolRoundedIcon from "@material-ui/icons/SchoolRounded";
-import NavButton from "./NavButton";
+import NavigationButton from "./NavigationButton";
 
 function Header() {
   return (
@@ -15,8 +15,8 @@ function Header() {
         </a>
 
         <ul className="nav nav-pills">
-          <NavButton name="Home" />
-          <NavButton name="About Us" />
+          <NavigationButton name="Home" />
+          <NavigationButton name="About Us" />
         </ul>
       </header>
     </div>

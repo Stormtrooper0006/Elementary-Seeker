@@ -1,6 +1,6 @@
 /*link button*/
-.link-color {
-  color: #6f42c1;
+a {
+  color: #6f42c1 !important;
 }
 a:hover {
   color: #fff !important;
@@ -31,4 +31,9 @@ a:hover {
 }
 .warning {
   color: #e50000;
+}
+
+/*title*/
+h1 {
+  color: #6f42c1;
 }
