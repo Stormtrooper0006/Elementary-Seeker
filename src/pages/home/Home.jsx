@@ -11,7 +11,9 @@ function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    history.push(`/school-list/${input.province}/${input.regency}`);
+    history.push(
+      `/school-list?province=${input.province}&regency=${input.regency}`
+    );
   };
 
   function handleChange(e) {

@@ -1,9 +1,9 @@
 /*link button*/
 a {
-  color: #6f42c1 !important;
+  color: #fff !important;
 }
 a:hover {
-  color: #fff !important;
+  color: #6f42c1 !important;
 }
 
 /*submit button*/
