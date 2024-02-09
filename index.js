@@ -25,11 +25,18 @@ app.get("/school-list", (req, res) => {
   const regency = req.query.regency;
 
   const query =
-    "SELECT schools.id as school_id, schools.name, schools.description, photos.photo_url1 " +
-    "FROM schools " +
-    "JOIN photos ON schools.id = photos.school_id " +
-    "JOIN regions ON schools.region_id = regions.id " +
-    "WHERE regions.province = ? AND regions.regency = ?";
+    "SELECT s.id as school_id, " +
+    "s.description, " +
+    "s.contact_number, " +
+    "s.address, " +
+    "s.website_link, " +
+    "p.photo_url1, " +
+    "p.photo_url2, " +
+    "p.photo_url3 " +
+    "FROM schools s " +
+    "JOIN photos p ON s.id = p.school_id " +
+    "JOIN regions r ON s.region_id = r.id " +
+    "WHERE r.province = ? AND r.regency = ?";
   db.query(query, [province, regency], (err, result) => {
     if (err) {
       console.error("MySQL query error:", err);
