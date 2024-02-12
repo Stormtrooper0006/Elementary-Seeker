@@ -21,11 +21,8 @@ a:hover {
 }
 
 /*form*/
-.form-select:focus {
-  border-color: #495057;
-  box-shadow: none;
-}
-.form-select:focus {
+.form-select:focus,
+.form-control:focus {
   border-color: #495057;
   box-shadow: none;
 }
@@ -36,4 +33,11 @@ a:hover {
 /*title*/
 h1 {
   color: #6f42c1;
+}
+
+.truncate-two-lines {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }

@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import mysql from "mysql";
+import cors from "cors";
 
 const app = express();
 const port = 3001;
@@ -20,12 +21,28 @@ db.connect((err) => {
   }
 });
 
+app.use(cors({ origin: "http://localhost:3000" }));
+
+app.get("/home", (req, res) => {
+  const query =
+    "SELECT r.id, " + "r.province, " + "r.regency " + "FROM regions r";
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("MySQL query error:", err);
+      res.status(500).send("Internal Server Error");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 app.get("/school-list", (req, res) => {
   const province = req.query.province;
   const regency = req.query.regency;
 
   const query =
     "SELECT s.id as school_id, " +
+    "s.name, " +
     "s.description, " +
     "s.contact_number, " +
     "s.address, " +
