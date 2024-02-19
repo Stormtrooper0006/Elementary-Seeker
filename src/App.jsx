@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/home/Home";
 import SchoolList from "./pages/school_list/SchoolList";
+import SchoolDetail from "./pages/school_detail/SchoolDetail";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/school-list" component={SchoolList} />
+          <Route exact path="/school-list/:id" component={SchoolDetail} />
           {/* <Route path="/about" component={About} /> */}
         </Switch>
         <Footer />

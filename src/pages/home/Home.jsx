@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
+import Loading from "../../components/Loading";
 
 function Home() {
   const history = useHistory();
@@ -31,7 +32,7 @@ function Home() {
     fetchData();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     history.push(
       `/school-list?province=${input.province}&regency=${input.regency}`
@@ -50,86 +51,82 @@ function Home() {
   }
 
   if (!data) {
-    return null;
+    return <Loading />;
   }
 
   return (
-    <div className="container col-xl-10 col-xxl-8 px-4 py-5">
-      {data ? (
-        <div className="row align-items-center g-lg-5 py-5">
-          <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 mb-3">Elementary Seeker</h1>
-            <h2>A website where you can find private elementary school </h2>
+    <div className="container col-xl-10 col-xxl-8 px-4 py-5 min-vh">
+      <div className="row align-items-center g-lg-5 py-5">
+        <div className="col-lg-7 text-center text-lg-start">
+          <h1 className="display-4 fw-bold lh-1 mb-3">Elementary Seeker</h1>
+          <h2>A website where you can find private elementary school </h2>
 
-            <p className="col-lg-10 fs-4">
-              Discover private elementary schools by searching based on their
-              province and regency.
-            </p>
-          </div>
-          <div className="col-md-10 mx-auto col-lg-5">
-            <form
-              className="p-4 p-md-5 border rounded-3 bg-body-tertiary"
-              onSubmit={handleSubmit}
-            >
-              <div className="form-floating mb-3">
-                <select
-                  className="form-select"
-                  id="province"
-                  name="province"
-                  onChange={handleChange}
-                  required
-                >
-                  <option disabled selected value="">
-                    Select Province
-                  </option>
-                  {provinces.map((province, index) => {
+          <p className="col-lg-10 fs-4">
+            Discover private elementary schools by searching based on their
+            province and regency.
+          </p>
+        </div>
+        <div className="col-md-10 mx-auto col-lg-5">
+          <form
+            className="p-4 p-md-5 border rounded-3 bg-body-tertiary"
+            onSubmit={handleSubmit}
+          >
+            <div className="form-floating mb-3">
+              <select
+                className="form-select"
+                id="province"
+                name="province"
+                onChange={handleChange}
+                required
+              >
+                <option disabled selected value="">
+                  Select Province
+                </option>
+                {provinces.map((province, index) => {
+                  return (
+                    <option key={index} value={province}>
+                      {province}
+                    </option>
+                  );
+                })}
+              </select>
+              <label htmlFor="province">Province</label>
+            </div>
+            <div className="form-floating mb-3">
+              <select
+                className="form-select"
+                id="regency"
+                name="regency"
+                onChange={handleChange}
+                required
+              >
+                <option disabled selected value="">
+                  Select Regency
+                </option>
+                {data
+                  .filter((row) => {
+                    return row.province === input.province;
+                  })
+                  .map((choice) => {
                     return (
-                      <option key={index} value={province}>
-                        {province}
+                      <option key={choice.id} value={choice.regency}>
+                        {choice.regency}
                       </option>
                     );
                   })}
-                </select>
-                <label htmlFor="province">Province</label>
-              </div>
-              <div className="form-floating mb-3">
-                <select
-                  className="form-select"
-                  id="regency"
-                  name="regency"
-                  onChange={handleChange}
-                  required
-                >
-                  <option disabled selected value="">
-                    Select Regency
-                  </option>
-                  {data
-                    .filter((row) => {
-                      return row.province === input.province;
-                    })
-                    .map((choice) => {
-                      return (
-                        <option key={choice.id} value={choice.regency}>
-                          {choice.regency}
-                        </option>
-                      );
-                    })}
-                </select>
-                <label htmlFor="regency">Regency</label>
-              </div>
-              <button
-                className="w-100 btn btn-lg  fs-4 purple-button"
-                type="submit"
-              >
-                <SearchRoundedIcon fontSize="large" />
-                Seek
-              </button>
-            </form>
-          </div>
+              </select>
+              <label htmlFor="regency">Regency</label>
+            </div>
+            <button
+              className="w-100 btn btn-lg  fs-4 purple-button"
+              type="submit"
+            >
+              <SearchRoundedIcon fontSize="large" />
+              Seek
+            </button>
+          </form>
         </div>
-      ) : (
-        <h1>Loading...</h1>
-      )}
+      </div>
     </div>
   );
 }

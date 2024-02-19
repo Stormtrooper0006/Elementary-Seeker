@@ -44,6 +44,28 @@ app.get("/school-list", (req, res) => {
     "SELECT s.id as school_id, " +
     "s.name, " +
     "s.description, " +
+    "p.photo_url1 " +
+    "FROM schools s " +
+    "JOIN photos p ON s.id = p.school_id " +
+    "JOIN regions r ON s.region_id = r.id " +
+    "WHERE r.province = ? AND r.regency = ?";
+  db.query(query, [province, regency], (err, result) => {
+    if (err) {
+      console.error("MySQL query error:", err);
+      res.status(500).send("Internal Server Error");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/school-list/:id", (req, res) => {
+  const id = req.params.id;
+
+  const query =
+    "SELECT s.id as school_id, " +
+    "s.name, " +
+    "s.description, " +
     "s.contact_number, " +
     "s.address, " +
     "s.website_link, " +
@@ -52,9 +74,8 @@ app.get("/school-list", (req, res) => {
     "p.photo_url3 " +
     "FROM schools s " +
     "JOIN photos p ON s.id = p.school_id " +
-    "JOIN regions r ON s.region_id = r.id " +
-    "WHERE r.province = ? AND r.regency = ?";
-  db.query(query, [province, regency], (err, result) => {
+    "WHERE s.id = ?";
+  db.query(query, [id], (err, result) => {
     if (err) {
       console.error("MySQL query error:", err);
       res.status(500).send("Internal Server Error");

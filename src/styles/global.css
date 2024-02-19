@@ -1,6 +1,12 @@
+/*vh*/
+.min-vh {
+  min-height: 69vh;
+}
+
 /*link button*/
 a {
   color: #fff !important;
+  text-decoration: none;
 }
 a:hover {
   color: #6f42c1 !important;
@@ -20,6 +26,16 @@ a:hover {
   border-color: #6e42c1ad !important;
 }
 
+/*back button*/
+.back-button {
+  color: #fff;
+  background-color: unset;
+}
+
+.back-button:hover {
+  color: #6f42c1;
+}
+
 /*form*/
 .form-select:focus,
 .form-control:focus {
@@ -35,9 +51,35 @@ h1 {
   color: #6f42c1;
 }
 
+/*card*/
 .truncate-two-lines {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   overflow: hidden;
+}
+.glow-card:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px #6e42c1d7 !important;
+}
+
+/*carousel*/
+.slick-slide {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.slick-list {
+  height: 100% !important;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.slick-dots li button:before {
+  color: #6f42c1 !important; /* Change to your desired color */
 }

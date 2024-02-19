@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import SearchBar from "../../components/SearchBar";
-import Card from "../../components/Card";
+import SearchBar from "./components/SearchBar";
+import Card from "./components/Card";
+import Loading from "../../components/Loading";
+import NotAvailable from "../../components/NotAvailable";
 
 function SchoolList() {
   const location = useLocation();
@@ -10,7 +12,7 @@ function SchoolList() {
   const regency = params.get("regency");
 
   const [data, setData] = useState(null);
-  const [schools, setSchools] = useState(null);
+  const [filteredSchools, setFilteredSchools] = useState(null);
   const [input, setInput] = useState("");
 
   useEffect(() => {
@@ -43,27 +45,33 @@ function SchoolList() {
       return nameMatch || descriptionMatch;
     });
 
-    setSchools(filteredSchools);
+    setFilteredSchools(filteredSchools);
   }, [data, input]);
 
   function handleChange(newInput) {
     setInput(newInput);
   }
 
-  if (!data || !schools) {
-    return null;
+  if (!data || !filteredSchools) {
+    return <Loading />;
+  }
+
+  if (data.length === 0) {
+    return <NotAvailable />;
   }
 
   return (
-    <div>
+    <div className="min-vh">
       <SearchBar input={input} handleChange={handleChange} />
       <div className="album py-5 bg-body-tertiary">
         <div className="container">
+          <h2>Results: {filteredSchools.length}</h2>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {schools.map((school) => {
+            {filteredSchools.map((school) => {
               return (
                 <Card
                   key={school.school_id}
+                  id={school.school_id}
                   name={school.name}
                   description={school.description}
                   photo_url1={school.photo_url1}

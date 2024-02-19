@@ -13,7 +13,6 @@ function Header() {
           <SchoolRoundedIcon fontSize="large" style={{ color: "#6f42c1" }} />
           <span className="ms-2 fs-4">Elementary Seeker</span>
         </a>
-
         <ul className="nav nav-pills">
           <NavigationButton name="Home" />
           <NavigationButton name="About Us" />
