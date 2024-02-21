@@ -65,6 +65,9 @@ function SchoolList() {
       <SearchBar input={input} handleChange={handleChange} />
       <div className="album py-5 bg-body-tertiary">
         <div className="container">
+          <h1>
+            Province: {province} - Regency: {regency}
+          </h1>
           <h2>Results: {filteredSchools.length}</h2>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {filteredSchools.map((school) => {

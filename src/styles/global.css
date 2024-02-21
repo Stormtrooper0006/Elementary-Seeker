@@ -4,11 +4,13 @@
 }
 
 /*link button*/
-a {
+a,
+.nav-customized {
   color: #fff !important;
   text-decoration: none;
 }
-a:hover {
+a:hover,
+.nav-customized:hover {
   color: #6f42c1 !important;
 }
 

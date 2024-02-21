@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function NavigationButton(props) {
   return (
     <li className="nav-item">
-      <a href="/" className="nav-link" aria-current="page">
+      <Link to={props.path} className="nav-link">
         {props.name}
-      </a>
+      </Link>
     </li>
   );
 }
