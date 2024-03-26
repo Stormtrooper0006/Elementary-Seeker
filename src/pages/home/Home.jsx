@@ -82,13 +82,17 @@ function Home() {
                 <option disabled selected value="">
                   Select Province
                 </option>
-                {provinces.map((province, index) => {
-                  return (
-                    <option key={index} value={province}>
-                      {province}
-                    </option>
-                  );
-                })}
+                {provinces
+                  .map((province, index) => {
+                    return (
+                      <option key={index} value={province}>
+                        {province}
+                      </option>
+                    );
+                  })
+                  .sort((a, b) =>
+                    a.props.children.localeCompare(b.props.children)
+                  )}
               </select>
               <label htmlFor="province">Province</label>
             </div>
@@ -113,7 +117,10 @@ function Home() {
                         {choice.regency}
                       </option>
                     );
-                  })}
+                  })
+                  .sort((a, b) =>
+                    a.props.children.localeCompare(b.props.children)
+                  )}
               </select>
               <label htmlFor="regency">Regency</label>
             </div>
