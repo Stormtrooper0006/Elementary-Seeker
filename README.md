@@ -72,7 +72,7 @@ The following API endpoints are available in this project. All endpoints return 
 - **Response**: Returns an array of schools with id, name, description, and photo_url1.
 **Example Request**
 ```
-GET /school-list?province=West+Java&regency=Bandung
+GET /school-list?province=DKI+Jakarta&regency=Jakarta+Timur
 ```
 **Example Response**
 ```
